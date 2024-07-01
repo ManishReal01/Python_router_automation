@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    environment {
+        ROUTER_USERNAME = credentials('router-username') // Replace with your credentials ID in Jenkins
+        ROUTER_PASSWORD = credentials('router-password') // Replace with your credentials ID in Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the repository
+                git url: 'https://github.com/ManishReal01/Python_router_automation.git', branch: 'main'
+            }
+        }
+
+        stage('Setup Python Environment') {
+            steps {
+                // Install dependencies if needed
+                sh 'pip3 install -r requirements.txt'
+            }
+        }
+
+        stage('Run Python Script') {
+            steps {
+                // Run the Python script
+                sh 'python3 your_script.py'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up workspace
+            cleanWs()
+        }
+    }
+}
