@@ -5,7 +5,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the repository containing the Python script
-                git 'https://github.com/ManishReal01/Python_router_automation.git'
+                git branch: 'main', url: 'https://github.com/ManishReal01/Python_router_automation.git'
             }
         }
         
