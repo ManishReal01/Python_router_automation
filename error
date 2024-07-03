@@ -21,12 +21,12 @@ Fetching upstream changes from https://github.com/ManishReal01/Python_router_aut
  > git --version # 'git version 2.43.0'
  > git fetch --tags --force --progress -- https://github.com/ManishReal01/Python_router_automation.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision 5439207895eb9a077479adca7e961534367b3c68 (refs/remotes/origin/main)
+Checking out Revision 19c5addc658e4ed3ce26dbad25ea6512e5dd36d7 (refs/remotes/origin/main)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 5439207895eb9a077479adca7e961534367b3c68 # timeout=10
+ > git checkout -f 19c5addc658e4ed3ce26dbad25ea6512e5dd36d7 # timeout=10
  > git branch -a -v --no-abbrev # timeout=10
  > git branch -D main # timeout=10
- > git checkout -b main 5439207895eb9a077479adca7e961534367b3c68 # timeout=10
+ > git checkout -b main 19c5addc658e4ed3ce26dbad25ea6512e5dd36d7 # timeout=10
 Commit message: "Update error"
  > git rev-list --no-walk 5439207895eb9a077479adca7e961534367b3c68 # timeout=10
 [Pipeline] }
@@ -84,6 +84,63 @@ python3.12-venv is already the newest version (3.12.3-1).
 + hash -r
 + pip install --upgrade pip
 Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.1.1)
++ pip install netmiko
+Collecting netmiko
+  Downloading netmiko-4.3.0-py3-none-any.whl.metadata (7.6 kB)
+Collecting ntc-templates>=2.0.0 (from netmiko)
+  Downloading ntc_templates-5.1.0-py3-none-any.whl.metadata (3.9 kB)
+Collecting paramiko>=2.9.5 (from netmiko)
+  Downloading paramiko-3.4.0-py3-none-any.whl.metadata (4.4 kB)
+Collecting pyserial>=3.3 (from netmiko)
+  Downloading pyserial-3.5-py2.py3-none-any.whl.metadata (1.6 kB)
+Collecting pyyaml>=5.3 (from netmiko)
+  Downloading PyYAML-6.0.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+Collecting scp>=0.13.6 (from netmiko)
+  Downloading scp-0.15.0-py2.py3-none-any.whl.metadata (4.3 kB)
+Collecting textfsm>=1.1.3 (from netmiko)
+  Downloading textfsm-1.1.3-py2.py3-none-any.whl.metadata (2.6 kB)
+Collecting bcrypt>=3.2 (from paramiko>=2.9.5->netmiko)
+  Downloading bcrypt-4.1.3-cp39-abi3-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Collecting cryptography>=3.3 (from paramiko>=2.9.5->netmiko)
+  Downloading cryptography-42.0.8-cp39-abi3-manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting pynacl>=1.5 (from paramiko>=2.9.5->netmiko)
+  Downloading PyNaCl-1.5.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl.metadata (8.6 kB)
+Collecting six (from textfsm>=1.1.3->netmiko)
+  Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting future (from textfsm>=1.1.3->netmiko)
+  Downloading future-1.0.0-py3-none-any.whl.metadata (4.0 kB)
+Collecting cffi>=1.12 (from cryptography>=3.3->paramiko>=2.9.5->netmiko)
+  Downloading cffi-1.16.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting pycparser (from cffi>=1.12->cryptography>=3.3->paramiko>=2.9.5->netmiko)
+  Downloading pycparser-2.22-py3-none-any.whl.metadata (943 bytes)
+Downloading netmiko-4.3.0-py3-none-any.whl (219 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 219.2/219.2 kB 8.4 MB/s eta 0:00:00
+Downloading ntc_templates-5.1.0-py3-none-any.whl (450 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 451.0/451.0 kB 15.5 MB/s eta 0:00:00
+Downloading paramiko-3.4.0-py3-none-any.whl (225 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 225.9/225.9 kB 16.8 MB/s eta 0:00:00
+Downloading pyserial-3.5-py2.py3-none-any.whl (90 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.6/90.6 kB 7.6 MB/s eta 0:00:00
+Downloading PyYAML-6.0.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (724 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 725.0/725.0 kB 20.9 MB/s eta 0:00:00
+Downloading scp-0.15.0-py2.py3-none-any.whl (8.8 kB)
+Downloading textfsm-1.1.3-py2.py3-none-any.whl (44 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.7/44.7 kB 3.4 MB/s eta 0:00:00
+Downloading bcrypt-4.1.3-cp39-abi3-manylinux_2_28_x86_64.whl (283 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 283.7/283.7 kB 17.6 MB/s eta 0:00:00
+Downloading cryptography-42.0.8-cp39-abi3-manylinux_2_28_x86_64.whl (3.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.9/3.9 MB 29.3 MB/s eta 0:00:00
+Downloading PyNaCl-1.5.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (856 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 856.7/856.7 kB 35.5 MB/s eta 0:00:00
+Downloading future-1.0.0-py3-none-any.whl (491 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 491.3/491.3 kB 36.9 MB/s eta 0:00:00
+Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Downloading cffi-1.16.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (477 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 477.6/477.6 kB 24.2 MB/s eta 0:00:00
+Downloading pycparser-2.22-py3-none-any.whl (117 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.6/117.6 kB 10.0 MB/s eta 0:00:00
+Installing collected packages: pyserial, six, pyyaml, pycparser, future, bcrypt, textfsm, cffi, pynacl, ntc-templates, cryptography, paramiko, scp, netmiko
+Successfully installed bcrypt-4.1.3 cffi-1.16.0 cryptography-42.0.8 future-1.0.0 netmiko-4.3.0 ntc-templates-5.1.0 paramiko-3.4.0 pycparser-2.22 pynacl-1.5.0 pyserial-3.5 pyyaml-6.0.1 scp-0.15.0 six-1.16.0 textfsm-1.1.3
 [Pipeline] }
 [Pipeline] // script
 [Pipeline] }
@@ -117,10 +174,15 @@ Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.1.
 + export VIRTUAL_ENV_PROMPT
 + hash -r
 + python3 router_automation_test.py
-Traceback (most recent call last):
-  File "/var/lib/jenkins/workspace/Pyton-Automation_demo/router_automation_test.py", line 1, in <module>
-    from netmiko import ConnectHandler
-ModuleNotFoundError: No module named 'netmiko'
+Connecting to router...
+Successfully connected to router.
+Enter new username: Traceback (most recent call last):
+  File "/var/lib/jenkins/workspace/Pyton-Automation_demo/router_automation_test.py", line 48, in <module>
+    main()
+  File "/var/lib/jenkins/workspace/Pyton-Automation_demo/router_automation_test.py", line 40, in main
+    new_user = input("Enter new username: ")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError: EOF when reading a line
 [Pipeline] }
 [Pipeline] // script
 [Pipeline] }
