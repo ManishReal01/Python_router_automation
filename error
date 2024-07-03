@@ -1,5 +1,5 @@
 Started by user Admin
-[Pipeline] Start of Pipeline
+[Pipeline] Start of Pipeline (hide)
 [Pipeline] node
 Running on Jenkins in /var/lib/jenkins/workspace/Pyton-Automation_demo
 [Pipeline] {
@@ -16,16 +16,27 @@ Fetching upstream changes from https://github.com/ManishReal01/Python_router_aut
  > git --version # timeout=10
  > git --version # 'git version 2.43.0'
  > git fetch --tags --force --progress -- https://github.com/ManishReal01/Python_router_automation.git +refs/heads/*:refs/remotes/origin/* # timeout=10
- > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
- > git rev-parse origin/master^{commit} # timeout=10
-ERROR: Couldn't find any revision to build. Verify the repository and branch configuration for this job.
-ERROR: Maximum checkout retry attempts reached, aborting
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 14336aecb9fe72e61eaf2705ef5cdcbb4f9c6723 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 14336aecb9fe72e61eaf2705ef5cdcbb4f9c6723 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main 14336aecb9fe72e61eaf2705ef5cdcbb4f9c6723 # timeout=10
+Commit message: "Update pipeline (ignore)"
+ > git rev-list --no-walk e5cc47acf413109b33badddd78ab940f90131cb1 # timeout=10
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Setup Python Environment)
-Stage "Setup Python Environment" skipped due to earlier failure(s)
-[Pipeline] getContext
+[Pipeline] sh
++ 
++ echo Python3 could not be found, installing...
+Python3 could not be found, installing...
++ sudo apt-get update
++ command -v python3
+/usr/bin/python3
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a password is required
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -37,5 +48,5 @@ Stage "Run Script" skipped due to earlier failure(s)
 [Pipeline] }
 [Pipeline] // node
 [Pipeline] End of Pipeline
-ERROR: Couldn't find any revision to build. Verify the repository and branch configuration for this job.
+ERROR: script returned exit code 1
 Finished: FAILURE
