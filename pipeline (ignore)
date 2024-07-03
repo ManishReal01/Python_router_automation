@@ -115,41 +115,36 @@ pipeline {
                 }
             }
         }
+
         stage('Setup Python Environment') {
             steps {
                 sh '''
-                # Check if python3 is installed
-                if ! command -v python3 &> /dev/null
+                # Install python3-venv if not installed
+                if ! command -v python3-venv &> /dev/null
                 then
-                    echo "Python3 could not be found, installing..."
+                    echo "python3-venv could not be found, installing..."
                     sudo apt-get update
-                    sudo apt-get install -y python3 python3-pip
-                fi
-
-                # Install virtualenv if not installed
-                if ! pip3 show virtualenv &> /dev/null
-                then
-                    echo "virtualenv could not be found, installing..."
-                    sudo apt-get install -y python3-virtualenv
+                    sudo apt-get install -y python3.12-venv  # Install python3.12-venv package
                 fi
 
                 # Create and activate virtual environment
                 python3 -m venv venv
-                . venv/bin/activate
+                source venv/bin/activate
 
-                # Install required packages
-                pip install netmiko
+                # Upgrade pip
+                pip install --upgrade pip
                 '''
             }
         }
+
         stage('Run Script') {
             steps {
                 sh '''
                 # Activate virtual environment
-                . venv/bin/activate
+                source venv/bin/activate
 
                 # Run your Python script
-                python your_script.py
+                python router_automation_test.py
                 '''
             }
         }
