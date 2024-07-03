@@ -21,14 +21,14 @@ Fetching upstream changes from https://github.com/ManishReal01/Python_router_aut
  > git --version # 'git version 2.43.0'
  > git fetch --tags --force --progress -- https://github.com/ManishReal01/Python_router_automation.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision cd63695720d607bf45d673cce0ab60d2cd14bd4b (refs/remotes/origin/main)
+Checking out Revision 5439207895eb9a077479adca7e961534367b3c68 (refs/remotes/origin/main)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f cd63695720d607bf45d673cce0ab60d2cd14bd4b # timeout=10
+ > git checkout -f 5439207895eb9a077479adca7e961534367b3c68 # timeout=10
  > git branch -a -v --no-abbrev # timeout=10
  > git branch -D main # timeout=10
- > git checkout -b main cd63695720d607bf45d673cce0ab60d2cd14bd4b # timeout=10
-Commit message: "Update pipeline (ignore)"
- > git rev-list --no-walk cd63695720d607bf45d673cce0ab60d2cd14bd4b # timeout=10
+ > git checkout -b main 5439207895eb9a077479adca7e961534367b3c68 # timeout=10
+Commit message: "Update error"
+ > git rev-list --no-walk 5439207895eb9a077479adca7e961534367b3c68 # timeout=10
 [Pipeline] }
 [Pipeline] // script
 [Pipeline] }
@@ -116,8 +116,11 @@ Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.1.
 + VIRTUAL_ENV_PROMPT=(venv) 
 + export VIRTUAL_ENV_PROMPT
 + hash -r
-+ router_automation_test.py
-/var/lib/jenkins/workspace/Pyton-Automation_demo@tmp/durable-9a97541d/script.sh.copy: 1: router_automation_test.py: not found
++ python3 router_automation_test.py
+Traceback (most recent call last):
+  File "/var/lib/jenkins/workspace/Pyton-Automation_demo/router_automation_test.py", line 1, in <module>
+    from netmiko import ConnectHandler
+ModuleNotFoundError: No module named 'netmiko'
 [Pipeline] }
 [Pipeline] // script
 [Pipeline] }
@@ -127,5 +130,5 @@ Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.1.
 [Pipeline] }
 [Pipeline] // node
 [Pipeline] End of Pipeline
-ERROR: script returned exit code 127
+ERROR: script returned exit code 1
 Finished: FAILURE
