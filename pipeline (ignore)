@@ -5,15 +5,21 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the repository containing the Python script
-                git 'https://github.com/your-username/your-repo.git'
+                git 'https://github.com/ManishReal01/Python_router_automation.git'
             }
         }
         
         stage('Setup Python Environment') {
             steps {
                 // Install Python if not already installed
-                sh 'sudo apt-get update'
-                sh 'sudo apt-get install -y python3 python3-pip'
+                sh '''
+                if ! command -v python3 &> /dev/null
+                then
+                    echo "Python3 could not be found, installing..."
+                    sudo apt-get update
+                    sudo apt-get install -y python3 python3-pip
+                fi
+                '''
                 
                 // Install required Python packages
                 sh 'pip3 install netmiko'
