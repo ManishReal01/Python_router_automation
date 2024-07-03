@@ -37,8 +37,10 @@ def main():
     if connection is None:
         return
     
-    new_user = input("Enter new username: ")
-    new_password = input("Enter new password: ")
+    # Define the user and password to add
+    new_user = 'Jenkins_NI'
+    new_password = 'Toor'
+    
     add_user(connection, new_user, new_password)
     
     connection.disconnect()
