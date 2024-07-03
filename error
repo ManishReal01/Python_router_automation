@@ -21,14 +21,14 @@ Fetching upstream changes from https://github.com/ManishReal01/Python_router_aut
  > git --version # 'git version 2.43.0'
  > git fetch --tags --force --progress -- https://github.com/ManishReal01/Python_router_automation.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision 1cf93e0f10d60784001747dca87ec10a24151d18 (refs/remotes/origin/main)
+Checking out Revision f7a4bf6927da9afc22c19a89f809e5d8e396928c (refs/remotes/origin/main)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 1cf93e0f10d60784001747dca87ec10a24151d18 # timeout=10
+ > git checkout -f f7a4bf6927da9afc22c19a89f809e5d8e396928c # timeout=10
  > git branch -a -v --no-abbrev # timeout=10
  > git branch -D main # timeout=10
- > git checkout -b main 1cf93e0f10d60784001747dca87ec10a24151d18 # timeout=10
+ > git checkout -b main f7a4bf6927da9afc22c19a89f809e5d8e396928c # timeout=10
 Commit message: "Update pipeline (ignore)"
- > git rev-list --no-walk fccb6c346ecef3e461c06113743d25ee76380d16 # timeout=10
+ > git rev-list --no-walk f7a4bf6927da9afc22c19a89f809e5d8e396928c # timeout=10
 [Pipeline] }
 [Pipeline] // script
 [Pipeline] }
@@ -37,11 +37,10 @@ Commit message: "Update pipeline (ignore)"
 [Pipeline] { (Setup Python Environment)
 [Pipeline] sh
 + 
-+ echo Python3 could not be found, installing...
-Python3 could not be found, installing...
++ echo python3-venv could not be found, installing...
+python3-venv could not be found, installing...
 + sudo apt-get update
-+ command -v python3
-/usr/bin/python3
++ command -v python3-venv
 Hit:1 http://sg.archive.ubuntu.com/ubuntu noble InRelease
 Hit:2 http://sg.archive.ubuntu.com/ubuntu noble-updates InRelease
 Hit:3 http://sg.archive.ubuntu.com/ubuntu noble-backports InRelease
@@ -49,111 +48,15 @@ Ign:4 https://pkg.jenkins.io/debian binary/ InRelease
 Hit:5 https://pkg.jenkins.io/debian binary/ Release
 Hit:7 http://security.ubuntu.com/ubuntu noble-security InRelease
 Reading package lists...
-+ sudo apt-get install -y python3 python3-pip
++ sudo apt-get install -y python3.12-venv
 Reading package lists...
 Building dependency tree...
 Reading state information...
-python3 is already the newest version (3.12.3-0ubuntu1).
-python3-pip is already the newest version (24.0+dfsg-1ubuntu1).
+python3.12-venv is already the newest version (3.12.3-1).
 0 upgraded, 0 newly installed, 0 to remove and 126 not upgraded.
-+ 
-+ echo virtualenv could not be found, installing...+ 
-virtualenv could not be found, installing...
-+ sudo apt-get install -y python3-virtualenv
-pip3 show virtualenv
-Reading package lists...
-Building dependency tree...
-Reading state information...
-WARNING: Package(s) not found: virtualenv
-The following additional packages will be installed:
-  python3-distlib python3-filelock python3-pip-whl python3-platformdirs
-  python3-setuptools-whl python3-wheel-whl
-Recommended packages:
-  python3-distutils
-The following NEW packages will be installed:
-  python3-distlib python3-filelock python3-pip-whl python3-platformdirs
-  python3-setuptools-whl python3-virtualenv python3-wheel-whl
-0 upgraded, 7 newly installed, 0 to remove and 126 not upgraded.
-Need to get 2,901 kB of archives.
-After this operation, 4,524 kB of additional disk space will be used.
-Get:1 http://sg.archive.ubuntu.com/ubuntu noble/universe amd64 python3-distlib all 0.3.8-1 [318 kB]
-Get:2 http://sg.archive.ubuntu.com/ubuntu noble/universe amd64 python3-filelock all 3.13.1-1 [10.8 kB]
-Get:3 http://sg.archive.ubuntu.com/ubuntu noble/universe amd64 python3-pip-whl all 24.0+dfsg-1ubuntu1 [1,702 kB]
-Get:4 http://sg.archive.ubuntu.com/ubuntu noble/main amd64 python3-platformdirs all 4.2.0-1 [16.1 kB]
-Get:5 http://sg.archive.ubuntu.com/ubuntu noble/universe amd64 python3-setuptools-whl all 68.1.2-2ubuntu1 [715 kB]
-Get:6 http://sg.archive.ubuntu.com/ubuntu noble/universe amd64 python3-wheel-whl all 0.42.0-2 [67.8 kB]
-Get:7 http://sg.archive.ubuntu.com/ubuntu noble/universe amd64 python3-virtualenv all 20.25.0+ds-2 [70.8 kB]
-debconf: unable to initialize frontend: Dialog
-debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
-debconf: falling back to frontend: Readline
-debconf: unable to initialize frontend: Readline
-debconf: (This frontend requires a controlling tty.)
-debconf: falling back to frontend: Teletype
-dpkg-preconfigure: unable to re-open stdin: 
-Fetched 2,901 kB in 1s (5,325 kB/s)
-Selecting previously unselected package python3-distlib.
-(Reading database ... 
-(Reading database ... 5%
-(Reading database ... 10%
-(Reading database ... 15%
-(Reading database ... 20%
-(Reading database ... 25%
-(Reading database ... 30%
-(Reading database ... 35%
-(Reading database ... 40%
-(Reading database ... 45%
-(Reading database ... 50%
-(Reading database ... 55%
-(Reading database ... 60%
-(Reading database ... 65%
-(Reading database ... 70%
-(Reading database ... 75%
-(Reading database ... 80%
-(Reading database ... 85%
-(Reading database ... 90%
-(Reading database ... 95%
-(Reading database ... 100%
-(Reading database ... 176789 files and directories currently installed.)
-Preparing to unpack .../0-python3-distlib_0.3.8-1_all.deb ...
-Unpacking python3-distlib (0.3.8-1) ...
-Selecting previously unselected package python3-filelock.
-Preparing to unpack .../1-python3-filelock_3.13.1-1_all.deb ...
-Unpacking python3-filelock (3.13.1-1) ...
-Selecting previously unselected package python3-pip-whl.
-Preparing to unpack .../2-python3-pip-whl_24.0+dfsg-1ubuntu1_all.deb ...
-Unpacking python3-pip-whl (24.0+dfsg-1ubuntu1) ...
-Selecting previously unselected package python3-platformdirs.
-Preparing to unpack .../3-python3-platformdirs_4.2.0-1_all.deb ...
-Unpacking python3-platformdirs (4.2.0-1) ...
-Selecting previously unselected package python3-setuptools-whl.
-Preparing to unpack .../4-python3-setuptools-whl_68.1.2-2ubuntu1_all.deb ...
-Unpacking python3-setuptools-whl (68.1.2-2ubuntu1) ...
-Selecting previously unselected package python3-wheel-whl.
-Preparing to unpack .../5-python3-wheel-whl_0.42.0-2_all.deb ...
-Unpacking python3-wheel-whl (0.42.0-2) ...
-Selecting previously unselected package python3-virtualenv.
-Preparing to unpack .../6-python3-virtualenv_20.25.0+ds-2_all.deb ...
-Unpacking python3-virtualenv (20.25.0+ds-2) ...
-Setting up python3-setuptools-whl (68.1.2-2ubuntu1) ...
-Setting up python3-filelock (3.13.1-1) ...
-Setting up python3-pip-whl (24.0+dfsg-1ubuntu1) ...
-Setting up python3-distlib (0.3.8-1) ...
-Setting up python3-platformdirs (4.2.0-1) ...
-Setting up python3-wheel-whl (0.42.0-2) ...
-Setting up python3-virtualenv (20.25.0+ds-2) ...
-Processing triggers for man-db (2.12.0-4build2) ...
 + python3 -m venv venv
-The virtual environment was not created successfully because ensurepip is not
-available.  On Debian/Ubuntu systems, you need to install the python3-venv
-package using the following command.
-
-    apt install python3.12-venv
-
-You may need to use sudo with that command.  After installing the python3-venv
-package, recreate your virtual environment.
-
-Failing command: /var/lib/jenkins/workspace/Pyton-Automation_demo/venv/bin/python3
-
++ source venv/bin/activate
+/var/lib/jenkins/workspace/Pyton-Automation_demo@tmp/durable-97b2b372/script.sh.copy: 12: source: not found
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -167,5 +70,5 @@ Stage "Run Script" skipped due to earlier failure(s)
 [Pipeline] }
 [Pipeline] // node
 [Pipeline] End of Pipeline
-ERROR: script returned exit code 1
+ERROR: script returned exit code 127
 Finished: FAILURE
