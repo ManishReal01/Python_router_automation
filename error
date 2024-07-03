@@ -1,5 +1,5 @@
 Started by user Admin
-[Pipeline] Start of Pipeline (hide)
+[Pipeline] Start of Pipeline
 [Pipeline] node
 Running on Jenkins in /var/lib/jenkins/workspace/Pyton-Automation_demo
 [Pipeline] {
@@ -17,13 +17,14 @@ Fetching upstream changes from https://github.com/ManishReal01/Python_router_aut
  > git --version # 'git version 2.43.0'
  > git fetch --tags --force --progress -- https://github.com/ManishReal01/Python_router_automation.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision 14336aecb9fe72e61eaf2705ef5cdcbb4f9c6723 (refs/remotes/origin/main)
+Checking out Revision 7db37d3abf39f090a41da75d79e767a1bfe980f0 (refs/remotes/origin/main)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 14336aecb9fe72e61eaf2705ef5cdcbb4f9c6723 # timeout=10
+ > git checkout -f 7db37d3abf39f090a41da75d79e767a1bfe980f0 # timeout=10
  > git branch -a -v --no-abbrev # timeout=10
- > git checkout -b main 14336aecb9fe72e61eaf2705ef5cdcbb4f9c6723 # timeout=10
-Commit message: "Update pipeline (ignore)"
- > git rev-list --no-walk e5cc47acf413109b33badddd78ab940f90131cb1 # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main 7db37d3abf39f090a41da75d79e767a1bfe980f0 # timeout=10
+Commit message: "Update error"
+ > git rev-list --no-walk 14336aecb9fe72e61eaf2705ef5cdcbb4f9c6723 # timeout=10
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -35,6 +36,9 @@ Python3 could not be found, installing...
 + sudo apt-get update
 + command -v python3
 /usr/bin/python3
+/etc/sudoers:45:47: expected a fully-qualified path name
+jenkins ALL=(ALL) NOPASSWD: /usr/bin/apt-get, usr/bin/pip3
+                                              ^~~~~~~~~~~~
 sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
 sudo: a password is required
 [Pipeline] }
