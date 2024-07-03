@@ -89,3 +89,69 @@ pipeline {
         }
     }
 }
+
+
+
+
+
+
+pipeline {
+    agent any
+
+    environment {
+        REPO_URL = 'https://github.com/ManishReal01/Python_router_automation.git'
+        BRANCH_NAME = 'main' // or the branch you want to build
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                script {
+                    try {
+                        git branch: "${BRANCH_NAME}", url: "${REPO_URL}"
+                    } catch (Exception e) {
+                        error "Failed to clone repository. Verify the repository URL and branch name."
+                    }
+                }
+            }
+        }
+        stage('Setup Python Environment') {
+            steps {
+                sh '''
+                # Check if python3 is installed
+                if ! command -v python3 &> /dev/null
+                then
+                    echo "Python3 could not be found, installing..."
+                    sudo apt-get update
+                    sudo apt-get install -y python3 python3-pip
+                fi
+
+                # Install virtualenv if not installed
+                if ! pip3 show virtualenv &> /dev/null
+                then
+                    echo "virtualenv could not be found, installing..."
+                    sudo apt-get install -y python3-virtualenv
+                fi
+
+                # Create and activate virtual environment
+                python3 -m venv venv
+                . venv/bin/activate
+
+                # Install required packages
+                pip install netmiko
+                '''
+            }
+        }
+        stage('Run Script') {
+            steps {
+                sh '''
+                # Activate virtual environment
+                . venv/bin/activate
+
+                # Run your Python script
+                python your_script.py
+                '''
+            }
+        }
+    }
+}
