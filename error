@@ -1,74 +1,32 @@
 Started by user Admin
-[Pipeline] Start of Pipeline
-[Pipeline] node
-Running on Jenkins in /var/lib/jenkins/workspace/Pyton-Automation_demo
-[Pipeline] {
-[Pipeline] withEnv
-[Pipeline] {
-[Pipeline] stage
-[Pipeline] { (Clone Repository)
-[Pipeline] script
-[Pipeline] {
-[Pipeline] git
-Selected Git installation does not exist. Using Default
-The recommended git tool is: NONE
-No credentials specified
- > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Pyton-Automation_demo/.git # timeout=10
-Fetching changes from the remote Git repository
- > git config remote.origin.url https://github.com/ManishReal01/Python_router_automation.git # timeout=10
-Fetching upstream changes from https://github.com/ManishReal01/Python_router_automation.git
- > git --version # timeout=10
- > git --version # 'git version 2.43.0'
- > git fetch --tags --force --progress -- https://github.com/ManishReal01/Python_router_automation.git +refs/heads/*:refs/remotes/origin/* # timeout=10
- > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision f7a4bf6927da9afc22c19a89f809e5d8e396928c (refs/remotes/origin/main)
- > git config core.sparsecheckout # timeout=10
- > git checkout -f f7a4bf6927da9afc22c19a89f809e5d8e396928c # timeout=10
- > git branch -a -v --no-abbrev # timeout=10
- > git branch -D main # timeout=10
- > git checkout -b main f7a4bf6927da9afc22c19a89f809e5d8e396928c # timeout=10
-Commit message: "Update pipeline (ignore)"
- > git rev-list --no-walk f7a4bf6927da9afc22c19a89f809e5d8e396928c # timeout=10
-[Pipeline] }
-[Pipeline] // script
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] stage
-[Pipeline] { (Setup Python Environment)
-[Pipeline] sh
-+ 
-+ echo python3-venv could not be found, installing...
-python3-venv could not be found, installing...
-+ sudo apt-get update
-+ command -v python3-venv
-Hit:1 http://sg.archive.ubuntu.com/ubuntu noble InRelease
-Hit:2 http://sg.archive.ubuntu.com/ubuntu noble-updates InRelease
-Hit:3 http://sg.archive.ubuntu.com/ubuntu noble-backports InRelease
-Ign:4 https://pkg.jenkins.io/debian binary/ InRelease
-Hit:5 https://pkg.jenkins.io/debian binary/ Release
-Hit:7 http://security.ubuntu.com/ubuntu noble-security InRelease
-Reading package lists...
-+ sudo apt-get install -y python3.12-venv
-Reading package lists...
-Building dependency tree...
-Reading state information...
-python3.12-venv is already the newest version (3.12.3-1).
-0 upgraded, 0 newly installed, 0 to remove and 126 not upgraded.
-+ python3 -m venv venv
-+ source venv/bin/activate
-/var/lib/jenkins/workspace/Pyton-Automation_demo@tmp/durable-97b2b372/script.sh.copy: 12: source: not found
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] stage
-[Pipeline] { (Run Script)
-Stage "Run Script" skipped due to earlier failure(s)
-[Pipeline] getContext
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] }
-[Pipeline] // withEnv
-[Pipeline] }
-[Pipeline] // node
-[Pipeline] End of Pipeline
-ERROR: script returned exit code 127
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+WorkflowScript: 54: expecting '}', found '' @ line 54, column 6.
+       }
+        ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:349)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:225)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:191)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:233)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:189)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:966)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:626)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:602)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:579)
+	at groovy.lang.GroovyClassLoader.doParseClass(GroovyClassLoader.java:323)
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:293)
+	at PluginClassLoader for script-security//org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.GroovySandbox$Scope.parse(GroovySandbox.java:163)
+	at PluginClassLoader for workflow-cps//org.jenkinsci.plugins.workflow.cps.CpsGroovyShell.doParse(CpsGroovyShell.java:190)
+	at PluginClassLoader for workflow-cps//org.jenkinsci.plugins.workflow.cps.CpsGroovyShell.reparse(CpsGroovyShell.java:175)
+	at PluginClassLoader for workflow-cps//org.jenkinsci.plugins.workflow.cps.CpsFlowExecution.parseScript(CpsFlowExecution.java:635)
+	at PluginClassLoader for workflow-cps//org.jenkinsci.plugins.workflow.cps.CpsFlowExecution.start(CpsFlowExecution.java:581)
+	at PluginClassLoader for workflow-job//org.jenkinsci.plugins.workflow.job.WorkflowRun.run(WorkflowRun.java:335)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:446)
 Finished: FAILURE
