@@ -29,7 +29,7 @@ pipeline {
         stage('Run Script') {
             steps {
                 // Run the Python script
-                sh 'python3 your_script.py'
+                sh 'python3 router_automation_test.py'
             }
         }
     }
