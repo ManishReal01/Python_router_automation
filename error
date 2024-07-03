@@ -1,5 +1,5 @@
 Started by user Admin
-[Pipeline] Start of Pipeline
+[Pipeline] Start of Pipeline (hide)
 [Pipeline] node
 Running on Jenkins in /var/lib/jenkins/workspace/Pyton-Automation_demo
 [Pipeline] {
@@ -16,62 +16,16 @@ Fetching upstream changes from https://github.com/ManishReal01/Python_router_aut
  > git --version # timeout=10
  > git --version # 'git version 2.43.0'
  > git fetch --tags --force --progress -- https://github.com/ManishReal01/Python_router_automation.git +refs/heads/*:refs/remotes/origin/* # timeout=10
- > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision fccb6c346ecef3e461c06113743d25ee76380d16 (refs/remotes/origin/main)
- > git config core.sparsecheckout # timeout=10
- > git checkout -f fccb6c346ecef3e461c06113743d25ee76380d16 # timeout=10
- > git branch -a -v --no-abbrev # timeout=10
- > git branch -D main # timeout=10
- > git checkout -b main fccb6c346ecef3e461c06113743d25ee76380d16 # timeout=10
-Commit message: "Update error"
- > git rev-list --no-walk fccb6c346ecef3e461c06113743d25ee76380d16 # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse origin/master^{commit} # timeout=10
+ERROR: Couldn't find any revision to build. Verify the repository and branch configuration for this job.
+ERROR: Maximum checkout retry attempts reached, aborting
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Setup Python Environment)
-[Pipeline] sh
-+ 
-+ echo Python3 could not be found, installing...
-Python3 could not be found, installing...
-+ sudo apt-get update
-+ command -v python3
-/usr/bin/python3
-Hit:1 http://sg.archive.ubuntu.com/ubuntu noble InRelease
-Hit:2 http://sg.archive.ubuntu.com/ubuntu noble-updates InRelease
-Hit:3 http://sg.archive.ubuntu.com/ubuntu noble-backports InRelease
-Ign:4 https://pkg.jenkins.io/debian binary/ InRelease
-Hit:5 https://pkg.jenkins.io/debian binary/ Release
-Hit:7 http://security.ubuntu.com/ubuntu noble-security InRelease
-Reading package lists...
-+ sudo apt-get install -y python3 python3-pip
-Reading package lists...
-Building dependency tree...
-Reading state information...
-python3 is already the newest version (3.12.3-0ubuntu1).
-python3-pip is already the newest version (24.0+dfsg-1ubuntu1).
-0 upgraded, 0 newly installed, 0 to remove and 126 not upgraded.
-[Pipeline] sh
-+ pip3 install netmiko
-error: externally-managed-environment
-
-× This environment is externally managed
-╰─> To install Python packages system-wide, try apt install
-    python3-xyz, where xyz is the package you are trying to
-    install.
-    
-    If you wish to install a non-Debian-packaged Python package,
-    create a virtual environment using python3 -m venv path/to/venv.
-    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
-    sure you have python3-full installed.
-    
-    If you wish to install a non-Debian packaged Python application,
-    it may be easiest to use pipx install xyz, which will manage a
-    virtual environment for you. Make sure you have pipx installed.
-    
-    See /usr/share/doc/python3.12/README.venv for more information.
-
-note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
-hint: See PEP 668 for the detailed specification.
+Stage "Setup Python Environment" skipped due to earlier failure(s)
+[Pipeline] getContext
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -83,5 +37,5 @@ Stage "Run Script" skipped due to earlier failure(s)
 [Pipeline] }
 [Pipeline] // node
 [Pipeline] End of Pipeline
-ERROR: script returned exit code 1
+ERROR: Couldn't find any revision to build. Verify the repository and branch configuration for this job.
 Finished: FAILURE
