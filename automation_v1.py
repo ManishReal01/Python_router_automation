@@ -1,5 +1,9 @@
 from netmiko import ConnectHandler
 import sys
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Define the router configuration with Telnet and no credentials
 router = {
@@ -27,7 +31,7 @@ def add_user(connection, new_user, new_password):
         output = connection.send_config_set(commands)
         print(f"User {new_user} added:\n{output}")
         # Save the configuration
-        save_output = connection.send_command('write memory')  # 'write memory' is used to save configuration in Telnet sessions
+        save_output = connection.send_command('write memory')  # 'write memory' to save configuration
         print(f"Configuration saved:\n{save_output}")
     except Exception as e:
         print(f"Failed to add user: {e}")
