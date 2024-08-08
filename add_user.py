@@ -15,6 +15,7 @@ device = {
     'username': 'your_existing_username',  # Replace with actual username
     'password': 'your_existing_password',  # Replace with actual password
     'secret': 'your_enable_password',      # Replace with actual enable password, if any
+    'conn_timeout': 20,                    # Increase connection timeout
 }
 
 try:
