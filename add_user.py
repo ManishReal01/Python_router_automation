@@ -1,33 +1,36 @@
-import sys
 from netmiko import ConnectHandler
+from getpass import getpass
 
-if len(sys.argv) != 4:
-    print("Usage: python3 add_user.py <HOSTNAME> <NEW_USERNAME> <NEW_PASSWORD>")
-    sys.exit(1)
-
-hostname = sys.argv[1]
-new_username = sys.argv[2]
-new_password = sys.argv[3]
-
-device = {
-    'device_type': 'cisco_ios',
-    'host': hostname,
-    'username': 'your_existing_username',  # Replace with actual username
-    'password': 'your_existing_password',  # Replace with actual password
-    'secret': 'your_enable_password',      # Replace with actual enable password, if any
-    'conn_timeout': 20,                    # Increase connection timeout
+# Router connection details
+router = {
+    'device_type': 'cisco_ios',  # Update as needed based on your router's type
+    'host': '172.18.0.4',
+    'username': 'admin',
+    'password': '123',
+    'port': 22,
 }
 
-try:
-    connection = ConnectHandler(**device)
-    connection.enable()
+# User details to be added
+new_user = {
+    'username': 'new_user',  # Update this to the new user's username
+    'password': 'new_password',  # Update this to the new user's password
+}
 
-    commands = [
-        f"username {new_username} privilege 15 secret {new_password}"
+# Connect to the router
+try:
+    connection = ConnectHandler(**router)
+    print(f"Connected to {router['host']}")
+
+    # Add a new user
+    config_commands = [
+        f"username {new_user['username']} password {new_user['password']}",
     ]
-    output = connection.send_config_set(commands)
+    output = connection.send_config_set(config_commands)
+    print("User added successfully.")
     print(output)
 
+    # Close the connection
     connection.disconnect()
+
 except Exception as e:
     print(f"Failed to connect or execute commands: {e}")
