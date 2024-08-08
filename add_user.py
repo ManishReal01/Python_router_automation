@@ -1,62 +1,32 @@
-pipeline {
-    agent any
+import sys
+from netmiko import ConnectHandler
 
-    parameters {
-        string(name: 'HOSTNAME', defaultValue: '172.20.20.3', description: 'Router hostname or IP')
-        string(name: 'NEW_USERNAME', defaultValue: '', description: 'New user username')
-        string(name: 'NEW_PASSWORD', defaultValue: '', description: 'New user password')
-        string(name: 'ENABLE_PASSWORD', defaultValue: '', description: 'Router enable password (if any)')
-    }
+if len(sys.argv) != 4:
+    print("Usage: python3 add_user.py <HOSTNAME> <NEW_USERNAME> <NEW_PASSWORD>")
+    sys.exit(1)
 
-    environment {
-        REPO_URL = 'https://github.com/ManishReal01/Python_router_automation.git'
-        BRANCH_NAME = 'main'
-    }
+hostname = sys.argv[1]
+new_username = sys.argv[2]
+new_password = sys.argv[3]
 
-    stages {
-        stage('Clone Repository') {
-            steps {
-                script {
-                    try {
-                        git branch: "${BRANCH_NAME}", url: "${REPO_URL}"
-                    } catch (Exception e) {
-                        error "Failed to clone repository. Verify the repository URL and branch name."
-                    }
-                }
-            }
-        }
-
-        stage('Setup Python Environment') {
-            steps {
-                script {
-                    // Check if python3-venv is installed
-                    def venvInstalled = sh(script: "python3 -m venv --help", returnStatus: true) == 0
-                    if (!venvInstalled) {
-                        error "python3-venv is not installed. Please install it manually."
-                    }
-
-                    // Create and activate virtual environment
-                    sh """
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install --upgrade pip
-                    pip install netmiko
-                    """
-                }
-            }
-        }
-
-        stage('Run Script') {
-            steps {
-                script {
-                    // Activate virtual environment and run the Python script with parameters
-                    def enablePasswordArg = params.ENABLE_PASSWORD ? params.ENABLE_PASSWORD : ''
-                    sh """
-                    . venv/bin/activate
-                    python3 add_user.py ${params.HOSTNAME} ${params.NEW_USERNAME} ${params.NEW_PASSWORD} ${enablePasswordArg}
-                    """
-                }
-            }
-        }
-    }
+device = {
+    'device_type': 'cisco_ios',
+    'host': hostname,
+    'username': 'your_existing_username',  # Replace with actual username
+    'password': 'your_existing_password',  # Replace with actual password
+    'secret': 'your_enable_password',      # Replace with actual enable password, if any
 }
+
+try:
+    connection = ConnectHandler(**device)
+    connection.enable()
+
+    commands = [
+        f"username {new_username} privilege 15 secret {new_password}"
+    ]
+    output = connection.send_config_set(commands)
+    print(output)
+
+    connection.disconnect()
+except Exception as e:
+    print(f"Failed to connect or execute commands: {e}")
