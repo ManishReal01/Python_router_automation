@@ -3,17 +3,20 @@ from getpass import getpass
 
 # Router connection details
 router = {
-    'device_type': 'cisco_ios',  # Update as needed based on your router's type
-    'host': '127.0.0.1',
+    'device_type': 'cisco_ios',
+    'host': '127.0.0.1',  # Confirm this IP
     'username': 'admin',
     'password': 'admin',
-    'port': 22,
+    'port': 22,  # Confirm this port
 }
+
+# Debug: Print connection details
+print(f"Attempting to connect to {router['host']} on port {router['port']}")
 
 # User details to be added
 new_user = {
-    'username': 'new_user',  # Update this to the new user's username
-    'password': 'new_password',  # Update this to the new user's password
+    'username': 'new_user',
+    'password': 'new_password',
 }
 
 # Connect to the router
