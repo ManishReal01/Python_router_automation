@@ -4,7 +4,7 @@ from getpass import getpass
 # Router connection details
 router = {
     'device_type': 'cisco_ios',  # Update as needed based on your router's type
-    'host': '172.0.0.1',
+    'host': '127.0.0.1',
     'username': 'admin',
     'password': 'admin',
     'port': 22,
