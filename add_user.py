@@ -1,13 +1,12 @@
 from netmiko import ConnectHandler
-from getpass import getpass
 
 # Router connection details
 router = {
     'device_type': 'cisco_ios',
-    'host': '127.0.0.1',  # Confirm this IP
+    'host': '127.0.0.1',  # Using loopback address
     'username': 'admin',
     'password': 'admin',
-    'port': 22,  # Confirm this port
+    'port': 22,  # Update if necessary
 }
 
 # Debug: Print connection details
