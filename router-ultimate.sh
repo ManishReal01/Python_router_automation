@@ -7,10 +7,9 @@ NEW_HOSTNAME=$4
 INTERFACE=$5
 INTERFACE_IP=$6
 SUBNET_MASK=$7
-NEW_USER=$8
-NEW_USER_PASSWORD=$9
 
-# Define the Python script content
+
+# Define the Python script content with parameter checks
 PYTHON_SCRIPT=$(cat <<EOF
 import paramiko
 import time
@@ -42,7 +41,7 @@ def run_ssh_commands(commands):
     finally:
         ssh.close()
 
-def configure_router():
+def main():
     commands = ["enable", "configure terminal"]
 
     if "$NEW_HOSTNAME":
@@ -54,6 +53,7 @@ def configure_router():
         commands.append("no shutdown")
         commands.append("exit")
 
+
     commands.append("ip domain-name example.com")
     commands.append("crypto key generate rsa modulus 1024")
     commands.append("ip ssh version 2")
@@ -63,21 +63,6 @@ def configure_router():
     commands.append("write memory")
 
     run_ssh_commands(commands)
-
-def add_new_user():
-    if "$NEW_USER" and "$NEW_USER_PASSWORD":
-        commands = [
-            "enable",
-            "configure terminal",
-            f"username $NEW_USER privilege 15 password $NEW_USER_PASSWORD",
-            "end",
-            "write memory"
-        ]
-        run_ssh_commands(commands)
-
-def main():
-    configure_router()
-    add_new_user()
 
 if __name__ == "__main__":
     main()
