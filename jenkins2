@@ -15,13 +15,13 @@ pipeline {
         }
         stage('Set Permissions') {
             steps {
-                sh 'chmod +x ./add_user.sh'
+                sh 'chmod +x ./add_user_updt.sh'
             }
         }
         stage('Run Python Script') {
             steps {
                 withEnv(["HOSTNAME=${params.HOSTNAME}", "NEW_USER=${params.NEW_USER}", "NEW_PASSWORD=${params.NEW_PASSWORD}"]) {
-                    sh 'sudo ./add_user.sh'
+                    sh 'sudo ./add_user_updt.sh'
                 }
             }
         }
