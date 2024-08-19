@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    
+    parameters {
+        string(name: 'HOSTNAME', defaultValue: 'default_hostname', description: 'Hostname for the router')
+        string(name: 'NEW_USER', defaultValue: 'default_user', description: 'New username to add')
+        password(name: 'NEW_PASSWORD', defaultValue: 'default_password', description: 'Password for the new user')
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/YY-312/ansible.git', branch: 'main'
+            }
+        }
+        stage('Set Permissions') {
+            steps {
+                sh 'chmod +x ./add_user.sh'
+            }
+        }
+        stage('Run Python Script') {
+            steps {
+                withEnv(["HOSTNAME=${params.HOSTNAME}", "NEW_USER=${params.NEW_USER}", "NEW_PASSWORD=${params.NEW_PASSWORD}"]) {
+                    sh 'sudo ./add_user.sh'
+                }
+            }
+        }
+    }
+}
