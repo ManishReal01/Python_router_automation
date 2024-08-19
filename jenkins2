@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/YY-312/ansible.git', branch: 'main'
+                git url: 'https://github.com/ManishReal01/Python_router_automation', branch: 'main'
             }
         }
         stage('Set Permissions') {
