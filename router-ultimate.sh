@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 ROUTER_HOST=$1
@@ -7,10 +8,7 @@ NEW_HOSTNAME=$4
 INTERFACE=$5
 INTERFACE_IP=$6
 SUBNET_MASK=$7
-DEFAULT_GATEWAY=$8
-MOTD_BANNER=$9
-NEW_USER=${10}
-NEW_USER_PASSWORD=${11}
+
 
 # Define the Python script content with parameter checks
 PYTHON_SCRIPT=$(cat <<EOF
@@ -31,7 +29,7 @@ def run_ssh_commands(commands):
         shell = ssh.invoke_shell()
 
         for command in commands:
-            shell.send(f"{command}\\n")
+            shell.send(f"{command}\n")
             time.sleep(1)
 
         output = shell.recv(10000).decode('utf-8')
@@ -56,19 +54,14 @@ def main():
         commands.append("no shutdown")
         commands.append("exit")
 
-    if "$DEFAULT_GATEWAY":
-        commands.append(f"ip route 0.0.0.0 0.0.0.0 $DEFAULT_GATEWAY")
 
-    if "$MOTD_BANNER":
-        commands.append(f"banner motd #$MOTD_BANNER#")
-
-    if "$NEW_USER" and "$NEW_USER_PASSWORD":
-        commands.append(f"username $NEW_USER privilege 15 secret $NEW_USER_PASSWORD")
-
+    commands.append("ip domain-name example.com")
+    commands.append("crypto key generate rsa modulus 1024")
+    commands.append("ip ssh version 2")
+    commands.append("line vty 0 4")
+    commands.append("transport input ssh")
+    commands.append("exit")
     commands.append("write memory")
-
-    # Capture and save the running configuration
-    commands.append("show running-config")
 
     run_ssh_commands(commands)
 
@@ -83,8 +76,5 @@ sudo docker exec -i -u root clab-firstlab-csr-r1 bash -c "echo '$PYTHON_SCRIPT' 
 # Step 2: Install Paramiko if it's not already installed
 sudo docker exec -i -u root clab-firstlab-csr-r1 bash -c "pip3 install paramiko"
 
-# Step 3: Run the Python script inside the container and save the running config
-sudo docker exec -i -u root clab-firstlab-csr-r1 bash -c "python3 /root/router.py > /root/running_config.txt"
-
-# Optional: Copy the running configuration to the host system (if required)
-sudo docker cp clab-firstlab-csr-r1:/root/running_config.txt .
+# Step 3: Run the Python script inside the container
+sudo docker exec -i -u root clab-firstlab-csr-r1 bash -c "python3 /root/router.py"
