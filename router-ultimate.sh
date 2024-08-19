@@ -10,6 +10,8 @@ SUBNET_MASK=$7
 DEFAULT_GATEWAY=$8
 NTP_SERVER=$9
 SNMP_COMMUNITY=${10}
+NEW_USER=${11}
+NEW_USER_PASSWORD=${12}
 
 # Define the Python script content with parameter checks
 PYTHON_SCRIPT=$(cat <<EOF
@@ -63,6 +65,9 @@ def main():
 
     if "$SNMP_COMMUNITY":
         commands.append(f"snmp-server community $SNMP_COMMUNITY RO")
+
+    if "$NEW_USER" and "$NEW_USER_PASSWORD":
+        commands.append(f"username $NEW_USER privilege 15 password $NEW_USER_PASSWORD")
 
     commands.append("ip domain-name example.com")
     commands.append("crypto key generate rsa modulus 1024")
