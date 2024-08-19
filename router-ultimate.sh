@@ -32,7 +32,7 @@ def run_ssh_commands(commands):
         shell = ssh.invoke_shell()
 
         for command in commands:
-            shell.send(f"{command}\n")
+            shell.send(f"{command}\\n")
             time.sleep(1)
 
         output = shell.recv(10000).decode('utf-8')
