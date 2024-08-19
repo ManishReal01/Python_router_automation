@@ -43,7 +43,7 @@ def main():
     commands = [
         "enable",              # Enter enable mode
         "configure terminal",  # Enter global configuration mode
-        "username newuser privilege 15 password newpassword", # Add new user with privilege level 15
+        "username Manish privilege 15 password testtt", # Add new user with privilege level 15
         "end",                 # Exit configuration mode
         "write memory"         # Save the configuration
     ]
